@@ -1,5 +1,5 @@
-# ES_Lab4
-Repo for working and managing ES. Lab4 
+# ES_Group27
+Repo for working and managing ES. Group27's labs. 
 
 Group #27:
 
