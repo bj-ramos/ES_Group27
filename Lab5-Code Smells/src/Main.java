@@ -9,6 +9,7 @@ import exceptions.ContactDoesNotExistException;
 
 /**
  * Main program for the application ContactBook.
+ *
  */
 public class Main {
     private static final String NOT_A_VALID_PHONE_NUMBER = "Not a valid phone number.";
