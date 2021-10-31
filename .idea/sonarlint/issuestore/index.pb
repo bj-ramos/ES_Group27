@@ -19,18 +19,6 @@ T
 $Lab4/ObserverPattern/src/Client.java,c\7\c7bd46dbb64371d7bfd6c3144fdd42f4bd08ccd6
 Q
 !Lab4/StatePattern/src/Closed.java,d\f\df9161991dbbc3ca449048cdb8ddd5a85e5be14a
-W
-'Lab5-Code Smells/src/cBook/Contact.java,a\a\aab3dfac8549f8e9f7e7d754e176e3cd4fa84fba
-r
-BLab5-Code Smells/src/exceptions/ContactAlreadyExistsException.java,a\c\ace9e9e4e2418a82de7634381dc00817de2d0907
-[
-+Lab5-Code Smells/src/cBook/ContactBook.java,f\e\fe7490780448d3e6c4e4ffb0c2179e9c764cf7c3
-a
-1Lab5-Code Smells/src/cBook/ContactBookInList.java,3\7\3769c9de6b592b3026cdecc20886691e6c124acc
-\
-,Lab5-Code Smells/src/cBook/ContactClass.java,8\8\8856157591dcc2e4ed4cf181099ad457d80ea180
-q
-ALab5-Code Smells/src/exceptions/ContactDoesNotExistException.java,7\0\70ff7d2d881539c0ea4da4281bd075f856e1b01e
 O
 Lab4/StatePattern/src/Gate.java,f\7\f7f0e7f9569ef79139e37a6463027c7d8ab688ef
 [
@@ -43,8 +31,6 @@ Q
 !Lab4/StatePattern/src/Opened.java,0\3\03e5aa1dfbb0d06a8608031f54135daa87b27cf8
 X
 (Lab4/ObserverPattern/src/Restaurant.java,0\d\0d5e5e9286dc17f03f4d3222de1d785bc085e94f
-U
-%Lab5-Code Smells/src/RunAllTests.java,f\4\f41a65eb9b55fe9731ce1df8a7732758979d07e1
 P
  Lab4/StatePattern/src/State.java,d\4\d47710fc3800302ce4c2df877fb67a8968c66fca
 \

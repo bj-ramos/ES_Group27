@@ -1,4 +1,4 @@
-package cBook;
+package cbook;
 
 /**
  * By removing the public visibility, this class is no longer visible outside the package
@@ -7,7 +7,8 @@ class ContactClass implements Contact {
     /**
      * Contact name.
      */
-    private String name;
+    //set name as final
+    private final String name;
 
     /**
      * Contact phone number.
@@ -17,7 +18,8 @@ class ContactClass implements Contact {
     /**
      * Contact the email address.
      */
-    public String email;
+    // changed email from public to private
+    private String email;
 
     /**
      * Default constructor
@@ -30,8 +32,9 @@ class ContactClass implements Contact {
 
     /**
      * Constructor with just the name. Leaves the phone number at 0, and the email address to null.
-     * @param name
+     * @param name contact name
      */
+    // added param name description to comment
     public ContactClass(String name) {
         this(name, 0, null);
     }
@@ -61,21 +64,26 @@ class ContactClass implements Contact {
         this.email = email;
     }
 
+    //replaced other with a pattern variable
+    //simplified if statement
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
 
         if (obj == null) return false;
 
-        if (!(obj instanceof Contact)) return false;
-
-        Contact other = (Contact) obj;
+        if (!(obj instanceof Contact other)) return false;
 
         if (name == null) {
-            if (other.getName() != null) return false;
-            else return true;
+            return other.getName() == null;
         }
         else return name.equals(other.getName());
+    }
+
+    //added hashCode override
+    @Override
+    public int hashCode() {
+        return super.hashCode();
     }
 
     @Override

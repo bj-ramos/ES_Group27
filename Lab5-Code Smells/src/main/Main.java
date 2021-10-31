@@ -1,30 +1,34 @@
+package main;
+//moved main class into a main default package
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import cBook.Contact;
-import cBook.ContactBook;
-import cBook.ContactBookInList;
+import cbook.Contact;
+import cbook.ContactBook;
+import cbook.ContactBookInList;
 import exceptions.ContactAlreadyExistsException;
 import exceptions.ContactDoesNotExistException;
 
 /**
- * Main program for the application ContactBook.
+ * main.Main program for the application ContactBook.
  *
  */
 public class Main {
     private static final String NOT_A_VALID_PHONE_NUMBER = "Not a valid phone number.";
 
     // Constants for defining the user feedback
-    public static final String CONTACT_EXISTS = "Contact already exists.";
-    public static final String NAME_NOT_EXIST = "Contact does not exist.";
-    public static final String CONTACT_ADDED = "Contact added.";
-    public static final String CONTACT_REMOVED = "Contact removed.";
-    public static final String CONTACT_UPDATED = "Contact updated.";
-    public static final String BOOK_EMPTY = "Contact book empty.";
-    public static final String ERROR = "Unknown command.";
-    public static final String EXIT = "Goodbye!";
+    //changed scope of the constants from public to private
+    //removed CONTACT_EXISTS since exception class already has it
+    //removed NAME_NOT_EXIST since exception class already has it
+    private static final String CONTACT_ADDED = "Contact added.";
+    private static final String CONTACT_REMOVED = "Contact removed.";
+    private static final String CONTACT_UPDATED = "Contact updated.";
+    private static final String BOOK_EMPTY = "Contact book empty.";
+    private static final String ERROR = "Unknown command.";
+    private static final String EXIT = "Goodbye!";
 
     // Enumeration for defining Commands
+    //modifier private is redundant for the constructor so it was removed
     private enum Command {
         ADD_CONTACT("AC"), REMOVE_CONTACT("RC"), GET_PHONE("GP"), GET_EMAIL("GE"),
         SET_PHONE("SP"), SET_EMAIL("SE"), LIST_CONTACTS("LC"),
@@ -32,54 +36,43 @@ public class Main {
 
         private final String commandInputName;
 
-        private Command(String commandInputName) {
+        Command(String commandInputName) {
             this.commandInputName = commandInputName;
         }
 
         public String getCommandInputName() {
             return commandInputName;
         }
-    };
+    }
 
     /**
-     * Main program. Runs the command interpreter.
+     * main.Main program. Runs the command interpreter.
      * @param args - arguments for executing the program. Not used in this program.
      */
     public static void main(String[] args) {
-        Main.execute_commands();
+        Main.executeCommands();
     }
 
     /**
      * Command interpreter.
      */
-    private static void execute_commands() {
+
+    //added default switch to output ERROR
+    //changed default switch to enhanced switch
+    private static void executeCommands() {
         Scanner in = new Scanner(System.in);
         ContactBook cBook = new ContactBookInList();
         Command comm = readCommand(in);
         while (!comm.equals(Command.QUIT)){
             switch (comm) {
-                case ADD_CONTACT:
-                    addContact(in,cBook);
-                    break;
-                case REMOVE_CONTACT:
-                    deleteContact(in,cBook);
-                    break;
-                case GET_PHONE:
-                    getPhone(in,cBook);
-                    break;
-                case GET_EMAIL:
-                    getEmail(in,cBook);
-                    break;
-                case SET_PHONE:
-                    setPhone(in,cBook);
-                    break;
-                case SET_EMAIL:
-                    setEmail(in,cBook);
-                    break;
-                case LIST_CONTACTS:
-                    listAllContacts(cBook);
-                    break;
-                default:
+                case ADD_CONTACT -> addContact(in, cBook);
+                case REMOVE_CONTACT -> deleteContact(in, cBook);
+                case GET_PHONE -> getPhone(in, cBook);
+                case GET_EMAIL -> getEmail(in, cBook);
+                case SET_PHONE -> setPhone(in, cBook);
+                case SET_EMAIL -> setEmail(in, cBook);
+                case LIST_CONTACTS -> listAllContacts(cBook);
+                default -> System.out.println(ERROR);
             }
             System.out.println();
             comm = readCommand(in);
@@ -136,7 +129,7 @@ public class Main {
             cBook.deleteContact(name);
             System.out.println(Main.CONTACT_REMOVED);
         } catch (ContactDoesNotExistException e) {
-            System.out.println(Main.NAME_NOT_EXIST);
+            System.out.println(e.getMessage());
         }
     }
 
@@ -151,7 +144,7 @@ public class Main {
         try {
             System.out.println(cBook.getPhone(name));
         } catch (ContactDoesNotExistException e) {
-            System.out.println(Main.NAME_NOT_EXIST);
+            System.out.println(e.getMessage());
         }
     }
 
@@ -166,7 +159,7 @@ public class Main {
         try {
             System.out.println(cBook.getEmail(name));
         } catch (ContactDoesNotExistException e) {
-            System.out.println(Main.NAME_NOT_EXIST);
+            System.out.println(e.getMessage());
         }
     }
 
@@ -175,12 +168,13 @@ public class Main {
      * @param in input from which data will be read.
      * @param cBook ContactBook where we want to update the phone number.
      */
+    // unnested try blocks and removed redundant catch
     private static void setPhone(Scanner in, ContactBook cBook) {
         try {
             String name;
             int phone;
             name = in.nextLine();
-            try {
+
                 phone = in.nextInt();
                 in.nextLine();
                 cBook.setPhone(name, phone);
@@ -189,10 +183,8 @@ public class Main {
                 in.nextLine();
                 System.out.println(Main.NOT_A_VALID_PHONE_NUMBER);
             } catch (ContactDoesNotExistException e) {
-                System.out.println(Main.NAME_NOT_EXIST);
-            }
-        } catch (InputMismatchException e) {
-            System.out.println(e.getMessage());
+                System.out.println(e.getMessage());
+
         }
     }
 
@@ -210,7 +202,7 @@ public class Main {
             cBook.setEmail(name,email);
             System.out.println(Main.CONTACT_UPDATED);
         } catch (ContactDoesNotExistException e) {
-            System.out.println(Main.NAME_NOT_EXIST);
+            System.out.println(e.getMessage());
         }
     }
 
